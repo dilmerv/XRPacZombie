@@ -9,7 +9,10 @@ public class PatrolAgentProcedural : MonoBehaviour
 {
     [SerializeField]
     private List<Transform> points = new List<Transform>();
-    
+
+    [SerializeField]
+    private Transform playerDestination;
+
     [SerializeField]
     private float minRemainingDistance = 0.5f;
 
@@ -47,6 +50,16 @@ public class PatrolAgentProcedural : MonoBehaviour
         destinationPoint = (destinationPoint + 1) % points.Count;
     }
 
+    void GoToPlayer()
+    {
+        if (playerDestination == null)
+        {
+            return;
+        }
+
+        agent.destination = playerDestination.position;
+    }
+
     private void Update()
     {
         if (!agent.enabled)
@@ -54,9 +67,18 @@ public class PatrolAgentProcedural : MonoBehaviour
             return;
         }
 
+        if (GameManager.Instance.gameMode == GameManager.GameMode.Zombie)
+        {
+            GoToPlayer();
+            return;
+        }
+
         if (!agent.pathPending && agent.remainingDistance < minRemainingDistance)
         {
-            GoToNextPoint();
+            if (GameManager.Instance.gameMode == GameManager.GameMode.Normal)
+            {
+                GoToNextPoint();
+            }
         }
     }
 }
