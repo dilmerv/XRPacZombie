@@ -10,6 +10,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(CapsuleCollider))]
 public class XRPlayerController : MonoBehaviour
 {
+    #region Core XR Player Functionality
+
     [Header("Behaviour Options")]
 
     [SerializeField]
@@ -48,6 +50,15 @@ public class XRPlayerController : MonoBehaviour
     private CapsuleCollider capsuleCollider;
 
     private List<InputDevice> devices = new List<InputDevice>();
+
+    #endregion
+
+    #region Handling Food Items
+
+    [SerializeField]
+    private float howLongToKeepFoodAlive = 1.0f;
+
+    #endregion
 
     public enum CapsuleDirection
     {
@@ -136,6 +147,22 @@ public class XRPlayerController : MonoBehaviour
         {
             Debug.Log("primaryButton is released " + buttonValue);
             buttonPressed = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Food")
+        {
+            var foodGameObject = other.gameObject;
+
+            var audioSource = foodGameObject.GetComponent<AudioSource>();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+            UIManager.Instance.IncrementScore();
+            Destroy(other.gameObject, howLongToKeepFoodAlive);
         }
     }
 }
