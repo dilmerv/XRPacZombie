@@ -110,8 +110,6 @@ public class XRPlayerController : MonoBehaviour
 
         if (controller.TryGetFeatureValue(primary2DVector, out primary2dValue) && primary2dValue != Vector2.zero)
         {
-            Debug.Log("primary2DAxisClick is pressed " + primary2dValue);
-
             var xAxis = primary2dValue.x * speed * Time.deltaTime;
             var zAxis = primary2dValue.y * speed * Time.deltaTime;
 
@@ -138,14 +136,12 @@ public class XRPlayerController : MonoBehaviour
         {
             if (!buttonPressed)
             {
-                Debug.Log("primaryButton is pressed " + buttonValue);
                 buttonPressed = true;
                 rigidBodyComponent.AddForce(Vector3.up * jumpForce);
             }
         }
         else if (buttonPressed)
         {
-            Debug.Log("primaryButton is released " + buttonValue);
             buttonPressed = false;
         }
     }

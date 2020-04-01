@@ -9,7 +9,7 @@ public class PatrolAgentProcedural : MonoBehaviour
 {
     [SerializeField]
     private List<Transform> points = new List<Transform>();
-
+    
     [SerializeField]
     private float minRemainingDistance = 0.5f;
 
