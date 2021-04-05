@@ -44,7 +44,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         gameTimer += Time.deltaTime * 1.0f;
-
+             
         // if the gameTimer >= 30 and gameTimer <= 40
         // zombie mode checks
         if (gameTimer >= normalGameModeTime && gameTimer <= (normalGameModeTime + zombieModeTime))

@@ -66,6 +66,12 @@ public class XRPlayerController : MonoBehaviour
         YAxis,
         ZAxis
     }
+    private void GetDevice()
+    {
+        InputDevices.GetDevicesAtXRNode(controllerNode, devices);
+        controller = devices.FirstOrDefault();
+    }
+
 
     void OnEnable()
     {
@@ -79,15 +85,14 @@ public class XRPlayerController : MonoBehaviour
         capsuleCollider.height = capsuleHeight;
     }
 
+    void Awake()
+    {
+        
+    }
+
     void Start()
     {
         GetDevice();
-    }
-
-    private void GetDevice()
-    {
-        InputDevices.GetDevicesAtXRNode(controllerNode, devices);
-        controller = devices.FirstOrDefault();
     }
 
     void Update()
@@ -101,6 +106,16 @@ public class XRPlayerController : MonoBehaviour
 
         UpdateJump(controller);
     }
+
+    void FixedUpdate()
+    {
+        
+    }
+
+
+
+
+
 
     private void UpdateMovement()
     {
