@@ -9,5 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/PacZombie.unity
     guid: e1ecc4bb328a58c4e90e2f59a14f60e3
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: de445482ab13c8d48a684dd0fb340b6b,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d011c68e4e31c4b4eb69463cdc7ae2da,
       type: 2}
